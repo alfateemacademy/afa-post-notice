@@ -30,8 +30,9 @@ class AFAPostNoticeEditor  {
 		if ( ! $this->user_can_save( $post_id ) ) {
 			return;
 		}
-
+		
 		$post_notice = $_POST[ 'afa-post-notice-display-editor' ];
+		$post_notice = stripcslashes(strip_tags($post_notice));
 		update_post_meta( $post_id, 'afa-post-notice-display', $post_notice );
 	}
 
