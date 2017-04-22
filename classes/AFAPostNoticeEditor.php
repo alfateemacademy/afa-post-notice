@@ -15,7 +15,7 @@ class AFAPostNoticeEditor  {
 			'afa-post-notice',
 			'Post Notice',
 			array( $this, 'post_notice_display' ),
-			$screen->id,
+			'post',
 			'normal',
 			'high'
 		);
@@ -37,10 +37,16 @@ class AFAPostNoticeEditor  {
 	}
 
 	public function user_can_save($post_id) {
+
+		$is_valid_nonce = wp_verify_nonce(
+			$_POST[ 'afa-post-notice-nonce' ],
+			'afa-unique-nonce-key'
+		);
+
 		$is_autosave = wp_is_post_autosave( $post_id );
 		$is_revision = wp_is_post_revision( $post_id );
 
-		return ! ( $is_autosave || $is_revision );
+		return ! ( $is_autosave || $is_revision ) && $is_valid_nonce;
 	}
 
 }
