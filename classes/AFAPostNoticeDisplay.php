@@ -13,9 +13,15 @@ class AFA_Post_Notice_Display {
 
 		if ( $post_notice != '' ) {
 
+			$whereToShow = get_option('where_to_show');
 			$notice_html = '<div class="afa-post-notice-display">' . $post_notice . '</div>';
 
-			$content = $notice_html . $content;
+			if($whereToShow == 'before' && $whereToShow == '') {
+				$content = $notice_html . $content;
+			} else {
+				$content = $content . $notice_html;
+			}
+
 
 		}
 

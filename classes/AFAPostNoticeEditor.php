@@ -10,12 +10,17 @@ class AFAPostNoticeEditor  {
 	function add_meta_box() {
 
 		$screen = get_current_screen();
+		$allowedScreens = get_option('post_notice_screens');
+
+		if( ! in_array($screen->id, $allowedScreens) ) {
+			return;
+		}
 
 		add_meta_box(
 			'afa-post-notice',
 			'Post Notice',
 			array( $this, 'post_notice_display' ),
-			'post',
+			$screen->id,
 			'normal',
 			'high'
 		);
