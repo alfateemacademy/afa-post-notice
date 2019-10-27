@@ -14,7 +14,7 @@ require_once (plugin_dir_path(__FILE__) . 'classes/AFAPostNoticeDisplay.php');
 require_once (plugin_dir_path(__FILE__) . 'classes/AFAPostNoticeEditor.php');
 require_once (plugin_dir_path(__FILE__) . 'classes/AFAPostNotice.php');
 
-function start_plugin() {
+function afa_start_plugin() {
 
 	if( is_admin() ) {
 		$postNoticeEditor = new AFAPostNoticeEditor();
@@ -26,4 +26,4 @@ function start_plugin() {
 	$postNotice->initialize();
 }
 
-start_plugin();
+afa_start_plugin();
